@@ -1,22 +1,12 @@
 import re
-from dataclasses import dataclass
-from enum import Enum
 from typing import Optional
 
-
-class Unit(str, Enum):
-    GRAM = "g"
-    KILOGRAM = "kg"
-    MILLILITER = "ml"
-    LITER = "l"
-    PIECE = "piece"
-
-
-@dataclass
-class ParsedPackaging:
-    raw_text: str
-    value: float
-    unit: Unit
+from samokat_kbju.cart.models import CartItem
+from samokat_kbju.normalization.models import (
+    NormalizedCartItem,
+    ParsedPackaging,
+    Unit,
+)
 
 
 _UNIT_ALIASES: dict[str, Unit] = {
@@ -73,3 +63,12 @@ def packaging_to_milliliters(parsed: ParsedPackaging) -> Optional[float]:
     if parsed.unit == Unit.LITER:
         return parsed.value * 1000
     return None
+
+
+def normalize_cart_item(cart_item: CartItem) -> NormalizedCartItem:
+    parsed_packaging = parse_packaging(cart_item.raw_packaging)
+
+    return NormalizedCartItem(
+        cart_item=cart_item,
+        parsed_packaging=parsed_packaging,
+    )

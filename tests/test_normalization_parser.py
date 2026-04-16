@@ -1,4 +1,5 @@
-from samokat_kbju.normalization.parser import Unit, parse_packaging
+from samokat_kbju.normalization.models import Unit
+from samokat_kbju.normalization.parser import parse_packaging
 
 
 def test_parse_grams() -> None:
