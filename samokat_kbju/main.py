@@ -27,8 +27,6 @@ def main() -> None:
                 print(f"   current price: {item.price_current}")
                 print(f"   old price: {item.price_old}")
                 print()
-
-        input("Press Enter to close...")
     finally:
         driver.quit()
 
