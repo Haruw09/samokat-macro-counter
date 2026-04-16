@@ -6,10 +6,7 @@ from typing import Optional
 class CartItem:
     name: str
     quantity: int
-
-    price_total: Optional[float] = None
-    price_per_unit: Optional[float] = None
-
-    raw_packaging: Optional[str] = None  # "500 г", "2 шт", "1 л"
-
+    price_current: Optional[float] = None
+    price_old: Optional[float] = None
+    raw_packaging: Optional[str] = None
     product_url: Optional[str] = None
